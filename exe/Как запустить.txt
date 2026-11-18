@@ -1,0 +1,5 @@
+Запуск: двойной щелчок по PhotoEditorWpf.exe.
+Нужна Windows 10/11 и .NET 8 Desktop Runtime:
+https://dotnet.microsoft.com/download/dotnet/8.0
+Состояние сохраняется при выходе в JSON-файл рядом с программой
+и восстанавливается при следующем запуске.

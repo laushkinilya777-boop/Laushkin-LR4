@@ -1,0 +1,75 @@
+<Window x:Class="PhotoEditor.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Фоторедактор" Height="600" Width="1000"
+        Loaded="Window_Loaded" Closing="Window_Closing">
+    <DockPanel>
+        <!-- Слева: список фото -->
+        <DockPanel DockPanel.Dock="Left" Width="200" Margin="5">
+            <Button DockPanel.Dock="Top" Content="Открыть фото..." Click="Open_Click" />
+            <Button DockPanel.Dock="Bottom" Content="Сохранить фото в файл..." Click="Save_Click" />
+            <ListBox x:Name="PhotoList" SelectionChanged="PhotoList_SelectionChanged" />
+        </DockPanel>
+
+        <!-- Справа: действия -->
+        <StackPanel DockPanel.Dock="Right" Width="260" Margin="5">
+            <GroupBox Header="Обрезка">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="X" /><TextBox x:Name="CropX" Text="0" />
+                        <Label Content="Y" /><TextBox x:Name="CropY" Text="0" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Ш" /><TextBox x:Name="CropW" Text="200" />
+                        <Label Content="В" /><TextBox x:Name="CropH" Text="200" />
+                        <Button Content="Обрезать" Click="Crop_Click" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <Button Content="Повернуть на 90°" Click="Rotate_Click" />
+            <GroupBox Header="Фильтры">
+                <WrapPanel>
+                    <Button Content="Светлее" Click="Lighter_Click" />
+                    <Button Content="Темнее" Click="Darker_Click" />
+                    <Button Content="Чёрно-белый" Click="Gray_Click" />
+                    <Button Content="Негатив" Click="Invert_Click" />
+                    <Button Content="Сепия" Click="Sepia_Click" />
+                </WrapPanel>
+            </GroupBox>
+            <GroupBox Header="Надпись">
+                <StackPanel>
+                    <TextBox x:Name="LabelText" Width="230" Text="Привет!" />
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="X" /><TextBox x:Name="TextX" Text="10" />
+                        <Label Content="Y" /><TextBox x:Name="TextY" Text="10" />
+                        <Label Content="Размер" /><TextBox x:Name="TextSize" Text="24" Width="35" />
+                    </StackPanel>
+                    <Button Content="Добавить надпись" Click="Text_Click" />
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Цвет (для надписи и пикселей)">
+                <ComboBox x:Name="ColorBox" SelectedIndex="0">
+                    <ComboBoxItem Content="Red" />
+                    <ComboBoxItem Content="White" />
+                    <ComboBoxItem Content="Black" />
+                    <ComboBoxItem Content="Yellow" />
+                    <ComboBoxItem Content="Blue" />
+                    <ComboBoxItem Content="Green" />
+                </ComboBox>
+            </GroupBox>
+            <CheckBox x:Name="DrawMode" Content="Рисовать пиксели щелчком по фото" Margin="2,6" />
+            <GroupBox Header="Коллаж">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="С фото №" /><TextBox x:Name="CollageWith" Text="1" />
+                    <Button Content="Создать коллаж" Click="Collage_Click" />
+                </StackPanel>
+            </GroupBox>
+            <TextBlock x:Name="StatusText" TextWrapping="Wrap" Margin="2,10" />
+        </StackPanel>
+
+        <!-- В центре: фото -->
+        <Border Background="LightGray" Margin="5">
+            <Image x:Name="PhotoView" Stretch="Uniform" MouseLeftButtonDown="PhotoView_MouseLeftButtonDown" />
+        </Border>
+    </DockPanel>
+</Window>

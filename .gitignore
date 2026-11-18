@@ -1,0 +1,8 @@
+bin/
+obj/
+.vs/
+*.user
+TestResults/
+*.json.tmp
+photo_session.json
+taxi_save.json
